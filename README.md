@@ -1,2 +1,504 @@
 # transform_mipi_seq
 转化mipi初始化序列文件程序(transform_mipi_seq)
+
+例子1(example):
+W_COM(0xB9,0xF1,0x12,0x87);
+
+W_COM(0xB2,0x40,0x05,0x78);
+
+W_COM(0xB3,0x10,0x10,0x28,0x28,0x03,0xFF,0x00,0x00,0x00,0x00);
+W_COM(0xB4,0x80);
+
+W_COM(0xB5,0x0F,0x0F);
+
+W_COM(0xB6,0x1E,0x1E);
+W_COM(0xB8,0x26,0x22,0xF0,0x13);
+
+W_COM(0xBA,0x33,0x81,0x05,0xF9,0x0E,0x0E,0x20,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x25,0x00,0x91,0x0A,0x00,0x00,0x01,0x4F,0x01,0x00,0x00,0x37);//2Lane:0x31 3Lane:0x32 4Lane:0x33
+W_COM(0xBC,0x47);
+W_COM(0xBF,0x02,0x10,0x00,0x80,0x04);
+
+W_COM(0xC0,0x73,0x73,0x50,0x50,0x00,0x00,0x12,0x73,0x00);
+
+W_COM(0xC1,0x65,0x00,0x32,0x32,0x99,0xF4,0xC7,0xC7,0x7C,0x7C,0x3F,0x3F,0x11,0x11,0x00,0x00,0x32);
+W_COM(0xC7,0x10,0x00,0x0A,0x00,0x00,0x00,0x00,0x00,0xED,0xC5,0x00,0xA5);
+W_COM(0xC8,0x10,0x40,0x1E,0x03);
+//txz_test
+
+W_COM(0xCC,0x07);
+W_COM(0xE0,0x00,0x0E,0x17,0x28,0x3B,0x3F,0x49,0x3D,0x07,0x0D,0x0E,0x12,0x13,0x12,0x13,0x12,0x19,0x00,0x0E,0x17,0x28,0x3B,0x3F,0x49,0x3D,0x07,0x0D,0x0E,0x12,0x13,0x12,0x13,0x12,0x19);
+W_COM(0xE1,0x11,0x11,0x91,0x00,0x00,0x00,0x00);
+W_COM(0xE3,0x07,0x07,0x0B,0x0B,0x0B,0x0B,0x00,0x00,0x00,0x00,0xFF,0x84,0xC0,0x10);
+
+W_COM(0xE9,0xC2,0x10,0x06,0x04,0xFE,0x80,0x81,0x12,0x31,0x23,0x47,0x82,0x01,0x81,0x27,0x38,0x0C,0x00,0x03,0x00,0x00,0x00,0x0C,0x00,0x03,0x00,0x00,0x00,0x75,0x75,0x31,0x88,0x88,0x88,0x88,0x88,0x88,0x13,0x88,0x64,0x64,0x20,0x88,0x88,0x88,0x88,0x88,0x88,0x02,0x88,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
+W_COM(0xEA,0x02,0x21,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x02,0x46,0x02,0x88,0x88,0x88,0x88,0x88,0x88,0x64,0x88,0x13,0x57,0x13,0x88,0x88,0x88,0x88,0x88,0x88,0x75,0x88,0x23,0x00,0x00,0x00,0xB3,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x40,0x80,0x81,0x00,0x00,0x00,0x00);
+
+
+
+W_COM(0xEF,0xFF,0xFF,0x01);
+W_COM((0x11);
+
+Delay (200);
+
+
+
+W_COM((0x29);
+
+Delay (50);
+
+
+//使用程序转化为:
+39 00 04 B9 F1 12 87
+39 00 04 B2 40 05 78
+39 00 0b B3 10 10 28 28 03 FF 00 00 00 00
+15 00 02 B4 80
+39 00 03 B5 0F 0F
+39 00 03 B6 1E 1E
+39 00 05 B8 26 22 F0 13
+39 00 1c BA 33 81 05 F9 0E 0E 20 00 00 00 00 00 00 00 44 25 00 91 0A 00 00 01 4F 01 00 00 37
+15 00 02 BC 47
+39 00 06 BF 02 10 00 80 04
+39 00 0a C0 73 73 50 50 00 00 12 73 00
+39 00 12 C1 65 00 32 32 99 F4 C7 C7 7C 7C 3F 3F 11 11 00 00 32
+39 00 0d C7 10 00 0A 00 00 00 00 00 ED C5 00 A5
+39 00 05 C8 10 40 1E 03
+15 00 02 CC 07
+39 00 23 E0 00 0E 17 28 3B 3F 49 3D 07 0D 0E 12 13 12 13 12 19 00 0E 17 28 3B 3F 49 3D 07 0D 0E 12 13 12 13 12 19
+39 00 08 E1 11 11 91 00 00 00 00
+39 00 0f E3 07 07 0B 0B 0B 0B 00 00 00 00 FF 84 C0 10
+39 00 40 E9 C2 10 06 04 FE 80 81 12 31 23 47 82 01 81 27 38 0C 00 03 00 00 00 0C 00 03 00 00 00 75 75 31 88 88 88 88 88 88 13 88 64 64 20 88 88 88 88 88 88 02 88 00 00 00 00 00 00 00 00 00 00 00 00 00
+39 00 3e EA 02 21 00 00 00 00 00 00 00 00 00 00 02 46 02 88 88 88 88 88 88 64 88 13 57 13 88 88 88 88 88 88 75 88 23 00 00 00 B3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 80 81 00 00 00 00
+39 00 04 EF FF FF 01
+05 C8 01 11
+05 32 01 29
+
+
+例子2(example):
+JDEVB_RSOX(800);    
+JDEVB_RSOY(1280);    
+JDEVB_VS(6);
+JDEVB_VBP(16);
+JDEVB_VFP(15);    
+JDEVB_HS(8);//4
+JDEVB_HBP(48);//4
+JDEVB_HFP(52);    
+JDEVB_DSILANE(4);//DSI Lane
+
+
+Generic_Long_Write_3P(0xFF,0x98,0x81,0x03);
+//GIP_1
+Generic_Short_Write_1P(0x01,0x00);
+Generic_Short_Write_1P(0x02,0x00);
+Generic_Short_Write_1P(0x03,0x53);     
+Generic_Short_Write_1P(0x04,0xD3);     
+Generic_Short_Write_1P(0x05,0x00);     
+Generic_Short_Write_1P(0x06,0x0D);     
+Generic_Short_Write_1P(0x07,0x08);     
+Generic_Short_Write_1P(0x08,0x00);     
+Generic_Short_Write_1P(0x09,0x00);        
+Generic_Short_Write_1P(0x0a,0x00);        
+Generic_Short_Write_1P(0x0b,0x00);        
+Generic_Short_Write_1P(0x0c,0x00);        
+Generic_Short_Write_1P(0x0d,0x00);     
+Generic_Short_Write_1P(0x0e,0x00);     
+Generic_Short_Write_1P(0x0f,0x28);     
+Generic_Short_Write_1P(0x10,0x28);     
+Generic_Short_Write_1P(0x11,0x00);     
+Generic_Short_Write_1P(0x12,0x00);     
+Generic_Short_Write_1P(0x13,0x00);     
+Generic_Short_Write_1P(0x14,0x00);
+Generic_Short_Write_1P(0x15,0x00);     
+Generic_Short_Write_1P(0x16,0x00);     
+Generic_Short_Write_1P(0x17,0x00);     
+Generic_Short_Write_1P(0x18,0x00);     
+Generic_Short_Write_1P(0x19,0x00);
+Generic_Short_Write_1P(0x1a,0x00);
+Generic_Short_Write_1P(0x1b,0x00);   
+Generic_Short_Write_1P(0x1c,0x00);
+Generic_Short_Write_1P(0x1d,0x00);
+Generic_Short_Write_1P(0x1e,0x40);     
+Generic_Short_Write_1P(0x1f,0x80);     
+Generic_Short_Write_1P(0x20,0x06);     
+Generic_Short_Write_1P(0x21,0x01);     
+Generic_Short_Write_1P(0x22,0x00);        
+Generic_Short_Write_1P(0x23,0x00);       
+Generic_Short_Write_1P(0x24,0x00);        
+Generic_Short_Write_1P(0x25,0x00);       
+Generic_Short_Write_1P(0x26,0x00);
+Generic_Short_Write_1P(0x27,0x00);
+Generic_Short_Write_1P(0x28,0x33);    
+Generic_Short_Write_1P(0x29,0x33);    
+Generic_Short_Write_1P(0x2a,0x00);  
+Generic_Short_Write_1P(0x2b,0x00);
+Generic_Short_Write_1P(0x2c,0x00);    
+Generic_Short_Write_1P(0x2d,0x00);    
+Generic_Short_Write_1P(0x2e,0x00);    
+Generic_Short_Write_1P(0x2f,0x00);   
+Generic_Short_Write_1P(0x30,0x00);
+Generic_Short_Write_1P(0x31,0x00);
+Generic_Short_Write_1P(0x32,0x00);    
+Generic_Short_Write_1P(0x33,0x00);
+Generic_Short_Write_1P(0x34,0x03);    
+Generic_Short_Write_1P(0x35,0x00);    
+Generic_Short_Write_1P(0x36,0x00);
+Generic_Short_Write_1P(0x37,0x00);    
+Generic_Short_Write_1P(0x38,0x96);    
+Generic_Short_Write_1P(0x39,0x00);
+Generic_Short_Write_1P(0x3a,0x00); 
+Generic_Short_Write_1P(0x3b,0x00);
+Generic_Short_Write_1P(0x3c,0x00);
+Generic_Short_Write_1P(0x3d,0x00);
+Generic_Short_Write_1P(0x3e,0x00);
+Generic_Short_Write_1P(0x3f,0x00);
+Generic_Short_Write_1P(0x40,0x00);
+Generic_Short_Write_1P(0x41,0x00);
+Generic_Short_Write_1P(0x42,0x00);
+Generic_Short_Write_1P(0x43,0x00);  
+Generic_Short_Write_1P(0x44,0x00);
+
+//GIP_2
+Generic_Short_Write_1P(0x50,0x00);
+Generic_Short_Write_1P(0x51,0x23);
+Generic_Short_Write_1P(0x52,0x45);
+Generic_Short_Write_1P(0x53,0x67);
+Generic_Short_Write_1P(0x54,0x89);
+Generic_Short_Write_1P(0x55,0xAB);
+Generic_Short_Write_1P(0x56,0x01);
+Generic_Short_Write_1P(0x57,0x23);
+Generic_Short_Write_1P(0x58,0x45);
+Generic_Short_Write_1P(0x59,0x67);
+Generic_Short_Write_1P(0x5a,0x89);
+Generic_Short_Write_1P(0x5b,0xAB);
+Generic_Short_Write_1P(0x5c,0xCD);
+Generic_Short_Write_1P(0x5d,0xEF);
+
+//GIP_3
+Generic_Short_Write_1P(0x5e,0x00);
+Generic_Short_Write_1P(0x5f,0x08);    
+Generic_Short_Write_1P(0x60,0x08);    
+Generic_Short_Write_1P(0x61,0x06);    
+Generic_Short_Write_1P(0x62,0x06);    
+Generic_Short_Write_1P(0x63,0x01);    
+Generic_Short_Write_1P(0x64,0x01);    
+Generic_Short_Write_1P(0x65,0x00);    
+Generic_Short_Write_1P(0x66,0x00);    
+Generic_Short_Write_1P(0x67,0x02);    
+Generic_Short_Write_1P(0x68,0x15);    
+Generic_Short_Write_1P(0x69,0x15);    
+Generic_Short_Write_1P(0x6a,0x14);    
+Generic_Short_Write_1P(0x6b,0x14);    
+Generic_Short_Write_1P(0x6c,0x0D);     
+Generic_Short_Write_1P(0x6d,0x0D);    
+Generic_Short_Write_1P(0x6e,0x0C);      
+Generic_Short_Write_1P(0x6f,0x0C);    
+Generic_Short_Write_1P(0x70,0x0F);    
+Generic_Short_Write_1P(0x71,0x0F);    
+Generic_Short_Write_1P(0x72,0x0E);    
+Generic_Short_Write_1P(0x73,0x0E);    
+Generic_Short_Write_1P(0x74,0x02);    
+  
+Generic_Short_Write_1P(0x75,0x08);       
+Generic_Short_Write_1P(0x76,0x08);        
+Generic_Short_Write_1P(0x77,0x06);        
+Generic_Short_Write_1P(0x78,0x06);        
+Generic_Short_Write_1P(0x79,0x01);         
+Generic_Short_Write_1P(0x7a,0x01);         
+Generic_Short_Write_1P(0x7b,0x00);       
+Generic_Short_Write_1P(0x7c,0x00);        
+Generic_Short_Write_1P(0x7d,0x02);          
+Generic_Short_Write_1P(0x7e,0x15);     
+Generic_Short_Write_1P(0x7f,0x15);         
+Generic_Short_Write_1P(0x80,0x14);        
+Generic_Short_Write_1P(0x81,0x14);      
+Generic_Short_Write_1P(0x82,0x0D);           
+Generic_Short_Write_1P(0x83,0x0D);        
+Generic_Short_Write_1P(0x84,0x0C);           
+Generic_Short_Write_1P(0x85,0x0C);     
+Generic_Short_Write_1P(0x86,0x0F);     
+Generic_Short_Write_1P(0x87,0x0F);     
+Generic_Short_Write_1P(0x88,0x0E);        
+Generic_Short_Write_1P(0x89,0x0E);        
+Generic_Short_Write_1P(0x8A,0x02);        
+
+//CMD_Page 4
+Generic_Long_Write_3P(0xFF,0x98,0x81,0x04);
+//Generic_Short_Write_1P(0x2F,0x01);          //BIST
+//Generic_Short_Write_1P(0x6C,0x15); 
+Generic_Short_Write_1P(0x6E,0x2B);          
+Generic_Short_Write_1P(0x6F,0x37);          
+Generic_Short_Write_1P(0x3A,0xA4);          
+Generic_Short_Write_1P(0x8D,0x1A);          
+Generic_Short_Write_1P(0x87,0xBA);          
+Generic_Short_Write_1P(0xB2,0xD1);
+Generic_Short_Write_1P(0x88,0x0B);
+Generic_Short_Write_1P(0x38,0x01);     
+Generic_Short_Write_1P(0x39,0x00);
+Generic_Short_Write_1P(0xB5,0x07);          
+Generic_Short_Write_1P(0x31,0x75);          
+Generic_Short_Write_1P(0x3B,0x98); 			
+			
+//CMD_Page 1
+Generic_Long_Write_3P(0xFF,0x98,0x81,0x01);
+Generic_Short_Write_1P(0x22,0x0A);         
+Generic_Short_Write_1P(0x31,0x00);         
+Generic_Short_Write_1P(0x53,0x4d);         
+Generic_Short_Write_1P(0x55,0x4D);         
+Generic_Short_Write_1P(0x50,0x87);  
+Generic_Short_Write_1P(0x51,0x82);  
+Generic_Short_Write_1P(0x60,0x10);         
+Generic_Short_Write_1P(0x62,0x20);
+//Generic_Short_Write_1P(0x63,0x00);
+//============Gamma START=============
+
+//Pos Register
+Generic_Short_Write_1P(0xA0,0x00);
+Generic_Short_Write_1P(0xA1,0x00);
+Generic_Short_Write_1P(0xA2,0x15);
+Generic_Short_Write_1P(0xA3,0x14);
+Generic_Short_Write_1P(0xA4,0x1B);
+Generic_Short_Write_1P(0xA5,0x2F);
+Generic_Short_Write_1P(0xA6,0x25);
+Generic_Short_Write_1P(0xA7,0x24);
+Generic_Short_Write_1P(0xA8,0x80);
+Generic_Short_Write_1P(0xA9,0x1F);
+Generic_Short_Write_1P(0xAA,0x2C);
+Generic_Short_Write_1P(0xAB,0x6C);
+Generic_Short_Write_1P(0xAC,0x16);
+Generic_Short_Write_1P(0xAD,0x14);
+Generic_Short_Write_1P(0xAE,0x4D);
+Generic_Short_Write_1P(0xAF,0x20);
+Generic_Short_Write_1P(0xB0,0x29);
+Generic_Short_Write_1P(0xB1,0x4F);
+Generic_Short_Write_1P(0xB2,0x5F);
+Generic_Short_Write_1P(0xB3,0x23);
+
+//Neg Register
+Generic_Short_Write_1P(0xC0,0x00);
+Generic_Short_Write_1P(0xC1,0x2E);
+Generic_Short_Write_1P(0xC2,0x3B);
+Generic_Short_Write_1P(0xC3,0x15);
+Generic_Short_Write_1P(0xC4,0x16);
+Generic_Short_Write_1P(0xC5,0x28);
+Generic_Short_Write_1P(0xC6,0x1A);
+Generic_Short_Write_1P(0xC7,0x1C);
+Generic_Short_Write_1P(0xC8,0xA7);
+Generic_Short_Write_1P(0xC9,0x1B);
+Generic_Short_Write_1P(0xCA,0x28);
+Generic_Short_Write_1P(0xCB,0x92);
+Generic_Short_Write_1P(0xCC,0x1F);
+Generic_Short_Write_1P(0xCD,0x1C);
+Generic_Short_Write_1P(0xCE,0x4B);
+Generic_Short_Write_1P(0xCF,0x1F);
+Generic_Short_Write_1P(0xD0,0x28);
+Generic_Short_Write_1P(0xD1,0x4E);
+Generic_Short_Write_1P(0xD2,0x5C);
+Generic_Short_Write_1P(0xD3,0x23);
+//============ Gamma END===========			
+	
+//CMD_Page 0			
+Generic_Long_Write_3P(0xFF,0x98,0x81,0x00);
+
+DCS_Short_Write_NP(0x11);  	// SLPOUT
+Delay(120);//MS
+
+DCS_Short_Write_NP(0x29);  	// DSPON
+Delay(20);
+
+
+
+//使用程序转化为:
+39 00 04 FF 98 81 03
+15 00 02 01 00
+15 00 02 02 00
+15 00 02 03 53
+15 00 02 04 D3
+15 00 02 05 00
+15 00 02 06 0D
+15 00 02 07 08
+15 00 02 08 00
+15 00 02 09 00
+15 00 02 0a 00
+15 00 02 0b 00
+15 00 02 0c 00
+15 00 02 0d 00
+15 00 02 0e 00
+15 00 02 0f 28
+15 00 02 10 28
+15 00 02 11 00
+15 00 02 12 00
+15 00 02 13 00
+15 00 02 14 00
+15 00 02 15 00
+15 00 02 16 00
+15 00 02 17 00
+15 00 02 18 00
+15 00 02 19 00
+15 00 02 1a 00
+15 00 02 1b 00
+15 00 02 1c 00
+15 00 02 1d 00
+15 00 02 1e 40
+15 00 02 1f 80
+15 00 02 20 06
+15 00 02 21 01
+15 00 02 22 00
+15 00 02 23 00
+15 00 02 24 00
+15 00 02 25 00
+15 00 02 26 00
+15 00 02 27 00
+15 00 02 28 33
+15 00 02 29 33
+15 00 02 2a 00
+15 00 02 2b 00
+15 00 02 2c 00
+15 00 02 2d 00
+15 00 02 2e 00
+15 00 02 2f 00
+15 00 02 30 00
+15 00 02 31 00
+15 00 02 32 00
+15 00 02 33 00
+15 00 02 34 03
+15 00 02 35 00
+15 00 02 36 00
+15 00 02 37 00
+15 00 02 38 96
+15 00 02 39 00
+15 00 02 3a 00
+15 00 02 3b 00
+15 00 02 3c 00
+15 00 02 3d 00
+15 00 02 3e 00
+15 00 02 3f 00
+15 00 02 40 00
+15 00 02 41 00
+15 00 02 42 00
+15 00 02 43 00
+15 00 02 44 00
+15 00 02 50 00
+15 00 02 51 23
+15 00 02 52 45
+15 00 02 53 67
+15 00 02 54 89
+15 00 02 55 AB
+15 00 02 56 01
+15 00 02 57 23
+15 00 02 58 45
+15 00 02 59 67
+15 00 02 5a 89
+15 00 02 5b AB
+15 00 02 5c CD
+15 00 02 5d EF
+15 00 02 5e 00
+15 00 02 5f 08
+15 00 02 60 08
+15 00 02 61 06
+15 00 02 62 06
+15 00 02 63 01
+15 00 02 64 01
+15 00 02 65 00
+15 00 02 66 00
+15 00 02 67 02
+15 00 02 68 15
+15 00 02 69 15
+15 00 02 6a 14
+15 00 02 6b 14
+15 00 02 6c 0D
+15 00 02 6d 0D
+15 00 02 6e 0C
+15 00 02 6f 0C
+15 00 02 70 0F
+15 00 02 71 0F
+15 00 02 72 0E
+15 00 02 73 0E
+15 00 02 75 08
+15 00 02 76 08
+15 00 02 77 06
+15 00 02 78 06
+15 00 02 79 01
+15 00 02 7a 01
+15 00 02 7b 00
+15 00 02 7c 00
+15 00 02 7d 02
+15 00 02 7e 15
+15 00 02 7f 15
+15 00 02 80 14
+15 00 02 81 14
+15 00 02 82 0D
+15 00 02 83 0D
+15 00 02 84 0C
+15 00 02 85 0C
+15 00 02 86 0F
+15 00 02 87 0F
+15 00 02 88 0E
+15 00 02 89 0E
+15 00 02 8A 02
+39 00 04 FF 98 81 04
+15 00 02 6E 2B
+15 00 02 6F 37
+15 00 02 3A A4
+15 00 02 8D 1A
+15 00 02 87 BA
+15 00 02 B2 D1
+15 00 02 88 0B
+15 00 02 38 01
+15 00 02 39 00
+15 00 02 B5 07
+15 00 02 31 75
+39 00 04 FF 98 81 01
+15 00 02 22 0A
+15 00 02 31 00
+15 00 02 53 4d
+15 00 02 55 4D
+15 00 02 50 87
+15 00 02 51 82
+15 00 02 60 10
+15 00 02 62 20
+15 00 02 A0 00
+15 00 02 A1 00
+15 00 02 A2 15
+15 00 02 A3 14
+15 00 02 A4 1B
+15 00 02 A5 2F
+15 00 02 A6 25
+15 00 02 A7 24
+15 00 02 A8 80
+15 00 02 A9 1F
+15 00 02 AA 2C
+15 00 02 AB 6C
+15 00 02 AC 16
+15 00 02 AD 14
+15 00 02 AE 4D
+15 00 02 AF 20
+15 00 02 B0 29
+15 00 02 B1 4F
+15 00 02 B2 5F
+15 00 02 B3 23
+15 00 02 C0 00
+15 00 02 C1 2E
+15 00 02 C2 3B
+15 00 02 C3 15
+15 00 02 C4 16
+15 00 02 C5 28
+15 00 02 C6 1A
+15 00 02 C7 1C
+15 00 02 C8 A7
+15 00 02 C9 1B
+15 00 02 CA 28
+15 00 02 CB 92
+15 00 02 CC 1F
+15 00 02 CD 1C
+15 00 02 CE 4B
+15 00 02 CF 1F
+15 00 02 D0 28
+15 00 02 D1 4E
+15 00 02 D2 5C
+15 00 02 D3 23
+39 00 04 FF 98 81 00
+05 78 01 11
+05 14 01 29
+
+
+
+
